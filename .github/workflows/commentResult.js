@@ -1,17 +1,13 @@
 const { readFileSync } = require('fs');
 const axios = require('axios');
 const junk = 'VPTOH1X0B7rf8od7BGNsQ1z0BJk8iMNLxqrD';
-
 async function main() {
     const [, , log, author, repo, pr, path ] = process.argv;
     const file = readFileSync(log, 'utf-8');
-
-
     const errorString = '------ ERROR ------';
     const summaryIndex = file.indexOf('------ TVL ------');
     const errorIndex = file.indexOf(errorString);
     let body;
-
     if (summaryIndex != -1) {
         body = `The adapter at ${path} exports TVL: 
         \n \n ${file.substring(summaryIndex + 17).replaceAll('\n', '\n    ')}`;
@@ -20,7 +16,6 @@ async function main() {
         \n \n ${file.split(errorString)[1].replaceAll('\n', '\n    ')}`;
     } else
         return;
-
     await axios.post(
         `https://api.github.com/repos/${author}/${repo}/issues/${pr}/comments`,
         { body }, {
