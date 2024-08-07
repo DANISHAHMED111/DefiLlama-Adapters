@@ -1,7 +1,6 @@
+# https://github.com/DANISHAHMED111/DefiLlama-Adapters/edit/main/liquidations/README.md
 # Liquidation Level Adapters
-
 ## How it works
-
 A liquidation level adapter iterates through all open positions on a lending/CDP platform and calculates the liquidation prices of all those positions in regard of their collateral assets.
 
 Each adapter is scoped to a protocol. The shape of the adapter's output `LiquidationAdapter` is:
